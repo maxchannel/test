@@ -13,14 +13,18 @@ Route::group(['prefix' => 'i', 'middleware' => ['guest']], function () {
 });
 
 //Auth users
-Route::group(['prefix' => 'i', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     //Logout
-    Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@logout'])
+    Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 
     //post
-    Route::get('/add/post', ['as' => 'post_client', 'uses' => 'postController@create']);
-    Route::post('/add/post', ['as' => 'post_client_store', 'uses' => 'postController@store']);
-    Route::get('/edit/post/{id}', ['as' => 'edit_post', 'uses' => 'postController@edit']);
-    Route::put('/edit/post/{id}', ['as' => 'edit_post_store', 'uses' => 'postController@update']);
+
+    Route::get('/add/post', ['as' => 'post_add', 'uses' => 'PostController@create']);
+    Route::post('/add/post', ['as' => 'post_create', 'uses' => 'PostController@store']);
+    Route::get('/edit/post/{id}', ['as' => 'post_edit', 'uses' => 'PostController@edit']);
+    Route::put('/edit/post/{id}', ['as' => 'post_edit_store', 'uses' => 'PostController@update']);
+
+    //ver
+    Route::get('/post/{id}/{slug} ', ['as' => 'post_show', 'uses' => 'PostController@show']);
 
 });

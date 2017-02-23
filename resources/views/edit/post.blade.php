@@ -16,11 +16,23 @@
                 @endif
                 @include('partials.errorMessages')
 
-                {!! Form::model($piece,['route'=>['edit_piece_store', $piece->id], 'method'=>'PUT', 'role'=>'form', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::model($post,['route'=>['post_edit_store', $post->id], 'method'=>'PUT', 'role'=>'form', 'class' => 'form-horizontal']) !!}
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Nombre*</label>
+                        <label class="col-md-4 control-label">Title*</label>
                         <div class="col-md-6">
-                           {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Nombre del Producto']) !!}
+                           {!! Form::text('title',null,['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contenido*</label>
+                        <div class="col-md-6">
+                           {!! Form::textarea('content',null,['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Tag*</label>
+                        <div class="col-md-6">
+                           {!! Form::text('tag',null,['class'=>'form-control']) !!}
                         </div>
                     </div>
                     <div class="form-group">

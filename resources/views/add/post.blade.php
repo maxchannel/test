@@ -5,28 +5,34 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Crear Pieza</div>
+                <div class="panel-heading">Crear Post</div>
                 <div class="panel-body">
 
                 @if(Session::has('message'))
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {{ Session::get('message') }}
+                        {{ Session::get('message') }} <a href="{{ route('post_show', [Session::get('vista_id'), Session::get('slug')]) }}">Ver Post</a>
                     </div>
                 @endif
                 @include('partials.errorMessages')
 
-                {!! Form::open(['route'=>'piece_client_store', 'method'=>'POST', 'role'=>'form', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['route'=>'post_create', 'method'=>'POST', 'role'=>'form', 'class' => 'form-horizontal']) !!}
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Nombre*</label>
+                        <label class="col-md-4 control-label">Title*</label>
                         <div class="col-md-6">
-                           {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Nombre del Producto']) !!}
+                           {!! Form::text('title',null,['class'=>'form-control']) !!}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Imágen*</label>
+                        <label class="col-md-4 control-label">Contenido*</label>
                         <div class="col-md-6">
-                           {!! Form::file('file',['accept' => 'image/*']) !!}
+                           {!! Form::textarea('content',null,['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Tag*</label>
+                        <div class="col-md-6">
+                           {!! Form::text('tag',null,['class'=>'form-control']) !!}
                         </div>
                     </div>
                     <div class="form-group">

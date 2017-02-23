@@ -3,6 +3,8 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
+use App\Http\Requests\StoreNewUserRequest;
 
 class AuthController extends Controller 
 {
@@ -17,14 +19,7 @@ class AuthController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = \Hash::make($request->input('password'));
-        $user->type = 'admin';
         $user->save();
-
-        $not = new UserNotification;
-        $not->m = 'Bienvenido';
-        $not->user_id = $user->id;
-        $not->v = 0;
-        $not->save();
 
         return \Redirect::route('login')->with('message', 'Registro exitoso, ahora puedes iniciar sesión');
     }

@@ -1,12 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MUSA Museo de las Artes | Un museo con nuevos horizontes</title>
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    <title>Max</title>
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
@@ -33,7 +31,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    MUSA
+                    Max
                 </a>
             </div>
 
@@ -41,45 +39,12 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if(Auth::check())
-                        @if(Auth::user()->isAdmin())
-
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Agregar <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ route('piece_client') }}"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Obra</a></li>
-                                <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Autor</a></li>
-                                <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Museo</a></li>
-                                <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-record" aria-hidden="true"></span> Usuarios</a></li>
+                                <li><a href="{{ route('post_add') }}"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Post</a></li>
                             </ul>
                         </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ route('list_painting') }}"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Obras</a></li>
-                                <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Autor</a></li>
-                                <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Museo</a></li>
-                                <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-record" aria-hidden="true"></span> Usuarios</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a></li>
-                        <li>    
-                            <a href="{{ route('home') }}"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> 
-                                Notificaciones 
-                                @if(Auth::user()->getNotifications() > 0)
-                                    <span class="badge red-n">{{ Auth::user()->getNotifications() }}</span>
-                                @endif
-                            </a>
-                        </li>
-                        {!! Form::open(['route'=>'home', 'method'=>'GET', 'role'=>'form', 'class'=>'navbar-form navbar-left']) !!}
-                            <div class="form-group">
-                                {!! Form::text('query',null,['class'=>'form-control', 'placeholder'=>'Buscar']) !!}
-                            </div>
-                            {!! Form::hidden('mode', 'search_general') !!}
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                        {!! Form::close() !!}
-                        @endif
                     @endif
                 </ul>
 
@@ -96,8 +61,6 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
-                                <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-wrench"></span> Optimización</a></li>
                                 <li><a href="{{ route('logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
