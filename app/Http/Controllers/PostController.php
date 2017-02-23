@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Tag;
+use App\Taggable;
 use App\Http\Requests\NewPostRequest;
 use App\Http\Requests\EditPostRequest;
 
@@ -26,6 +27,12 @@ class PostController extends Controller
 		$tag = new Tag;
 		$tag->name = $request->input('tag');
 		$tag->save();
+
+		$taggable = new Taggable;
+		$taggable->tag_id = $tag->id;
+		$taggable->taggable_id = $post->id;
+		$taggable->taggable_type = 'App\Post';
+		$taggable->save();
 
 		return \Redirect::back()->with('message', 'Creado con éxito')
 		->with('vista_id', $post->id)->with('slug', $post->slug);
