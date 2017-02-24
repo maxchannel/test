@@ -32,9 +32,13 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Tag*</label>
                         <div class="col-md-6">
-                           {!! Form::text('tag',null,['class'=>'form-control']) !!}
+                            <select name="tags[]" id="tags" multiple="multiple" style="width:100%" >
+                                <option selected="selected">Cars</option>
+                                <option selected="selected">Health</option>
+                            </select>
                         </div>
                     </div>
+                    
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">
@@ -49,4 +53,15 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script_footer')
+<script>
+$('#tags').select2({
+    data: ["Politics","Video"],
+    tags: true,
+    tokenSeparators: [','], 
+    placeholder: "Add your tags here"
+});
+</script>
 @endsection

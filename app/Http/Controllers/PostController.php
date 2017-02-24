@@ -24,15 +24,18 @@ class PostController extends Controller
 		$post->slug = str_slug($request->input('title'));
 		$post->save();
 
-		$tag = new Tag;
-		$tag->name = $request->input('tag');
-		$tag->save();
+		foreach($request->input('tags') as $value) 
+		{
+			$tag = new Tag;
+    		$tag->name = $value;
+    		$tag->save();    
 
-		$taggable = new Taggable;
-		$taggable->tag_id = $tag->id;
-		$taggable->taggable_id = $post->id;
-		$taggable->taggable_type = 'App\Post';
-		$taggable->save();
+    		$taggable = new Taggable;
+    		$taggable->tag_id = $tag->id;
+    		$taggable->taggable_id = $post->id;
+    		$taggable->taggable_type = 'App\Post';
+    		$taggable->save();
+		}
 
 		return \Redirect::back()->with('message', 'Creado con éxito')
 		->with('vista_id', $post->id)->with('slug', $post->slug);

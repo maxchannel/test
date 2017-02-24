@@ -2,3 +2,7 @@ body
 {
     font-family: 'Lato';
 }
+
+#tags {
+    width:100%
+}

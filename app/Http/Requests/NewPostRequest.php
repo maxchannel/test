@@ -24,7 +24,7 @@ class NewPostRequest extends Request {
 		return [
 			'title' => 'required',
 			'content' => 'required',
-			'tag' => 'required'
+			//'tag' => 'required'
 		];
 	}
 
